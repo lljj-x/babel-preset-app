@@ -1,6 +1,7 @@
 {
   "name": "@lljj/babel-preset-app",
-  "version": "4.5.7",
+  "version": "0.0.1",
+  "oVersion": "4.5.8",
   "description": "babel-preset-app for vue-cli",
   "main": "index.js",
   "publishConfig": {
@@ -39,7 +40,6 @@
     "semver": "^7.3.2"
   },
   "peerDependencies": {
-    "@babel/core": "*",
     "core-js": "^3",
     "vue": "^2 || ^3.0.0-0"
   },
