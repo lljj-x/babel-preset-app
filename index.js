@@ -164,7 +164,9 @@ module.exports = (context, options = {}) => {
     // By default transform-runtime assumes that @babel/runtime@7.0.0-beta.0 is installed, which means helpers introduced later than 7.0.0-beta.0 will be inlined instead of imported.
     // See https://github.com/babel/babel/issues/10261
     // And https://github.com/facebook/docusaurus/pull/2111
-    version = runtimeVersion
+    version = runtimeVersion,
+    regenerator,
+    helpers,
   } = options
 
   // resolve targets for preset-env
@@ -243,12 +245,12 @@ module.exports = (context, options = {}) => {
 
   // transform runtime, but only for helpers
   plugins.push([require('@babel/plugin-transform-runtime'), {
-    regenerator: useBuiltIns !== 'usage',
+    regenerator: undefined === regenerator ? useBuiltIns !== 'usage' : regenerator,
 
     // polyfills are injected by preset-env & polyfillsPlugin, so no need to add them again
     corejs: false,
 
-    helpers: useBuiltIns === 'usage',
+    helpers: undefined === helpers ? (useBuiltIns === 'usage') : helpers,
     useESModules: !process.env.VUE_CLI_BABEL_TRANSPILE_MODULES,
 
     absoluteRuntime,

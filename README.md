@@ -1,7 +1,31 @@
+# @lljj/babel-preset-app
+
 ## 为何Fork
 在官方的preset中如果配置了`useBuiltIns` 不等于 `usage` ，`plugin-transform-runtime` 就无法配置 `helpers` 来提取公共的助手代码
 
-fork一个支持配置： `regenerator`、`helpers`
+fork一个支持配置： `regenerator`、`helpers`，不配置会按照之前的逻辑处理。
+
+## 使用
+```
+yarn add @lljj/babel-preset-app --dev
+```
+
+```js
+babelConfig = {
+    presets: [
+        [
+            '@lljj/babel-preset-app',
+            {
+                useBuiltIns: false,
+                regenerator: false, // plugin-transform-runtime regenerator
+                helpers: true // plugin-transform-runtime helpers
+            }
+        ]
+    ]
+}
+```
+
+---
 
 # @vue/babel-preset-app
 
